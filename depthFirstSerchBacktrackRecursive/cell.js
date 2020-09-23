@@ -26,8 +26,8 @@
 // Index generator for neighbour searching:
 function index(i, j) {
 
-	// for the cases where the cell is on a edge, one wants to invalidated the 
-	// neighbour cells out of the grid:
+	// for the cases where the cell is on a edge, one wants to invalidated 
+	// the neighbour cells out of the grid:
 	if(i < 0 || j < 0 || i > col-1 || j > row-1){
 
 		return -1;
@@ -57,19 +57,19 @@ function Cell(i, j) {
 	// part of the decision make process:
 	this.checkNeighbours = function() {
 		/*
-			          -------
-			         |       |
-			         | i,j-1 | top
-			         |       |
+		                -------
+		               |       |
+		               | i,j-1 | top
+		               |       |
 		        ------- ------- ------- 
-	         |       |       |       | 
+	               |       |       |       | 
 		  left | i-1,j |  i,j  | i+1,j | right
 		       |       |       |       |
-		       ------- ------- -------					
-			         |       | 
+		        ------- ------- -------					
+		               |       | 
 		   	       | i,j+1 | bottom
-			         |       |
-			          -------
+		               |       |
+		                -------
 		*/
 		var neighbours = [];
 		
@@ -133,7 +133,7 @@ function Cell(i, j) {
 		let y = this.j*w; // size of the cell in y-axis
 
 		/*
-	   	Mechanics behind the cell nodes placement:
+	   	    Mechanics behind the cell nodes placement:
  
 			    (x,y)        (x + w, y)
 			        *-------*
@@ -141,7 +141,7 @@ function Cell(i, j) {
 			        |       |
 			        |       |
 			        *-------*
-		  (x,y + w)        (x + w, y + w)  	
+		        (x,y + w)        (x + w, y + w)  	
 
 		*/
 
@@ -180,14 +180,14 @@ function removeWalls(cellA, cellB){
 
 	/*
 	     remove this wall
-              | 
+                    | 
 	            V
-	  	 ------- -------  
+	     ------- -------  
 	    |       |       | 
-  		|cellB.i|cellA.i|
-		  |       |       |
-		   ------- ------- 
-		     i      i+1        
+            |cellB.i|cellA.i|
+	    |       |       |
+	     ------- ------- 
+	       i      i+1        
 	*/	
 
 		cellA.wall[3] = false; // left  wall of cell A
@@ -197,14 +197,14 @@ function removeWalls(cellA, cellB){
 
 	/*
 	     remove this wall
-              | 
+                    | 
 	            V
-		   ------- -------  
+             ------- -------  
 	    |       |       | 
-		  |cellA.i|cellB.i|
-		  |       |       |
-		   ------- ------- 
-		    i-1      i        
+            |cellA.i|cellB.i|
+	    |       |       |
+	     ------- ------- 
+	      i-1      i        
 	*/		
 
 		cellA.wall[1] = false; // right wall of cell A
@@ -215,35 +215,35 @@ function removeWalls(cellA, cellB){
 
 	if (y === 1){
 
-		/*
-			    -------
-			   |       |
-		  j	 |cellB.j|
-			   |       |
-		      -------  <-- remove this wall  
-	       |       | 
-		 j+1 |cellA.j|
+	/*
+		      -------
 		     |       |
-		      -------		
+		  j  |cellB.j|
+		     |       |
+		      -------  <-- remove this wall  
+	             |       | 
+		 j+1 |cellA.j|
+         	     |       |
+	              -------		
 
-		*/
+	*/
 		cellA.wall[0] = false; // top    wall of cell A
 		cellB.wall[2] = false; // bottom wall of cell B
 
 	} else if (y === -1){
 
-		/*
-			    -------
-			   |       |
+	/*
+		      -------
+	 	     |       |
 		 j-1 |cellA.j|
-			   |       |
+	             |       |
 		      -------  <-- remove this wall  
-	       |       | 
+	             |       | 
 		  j  |cellB.j|
 		     |       |
 		      -------		
 
-		*/
+	*/
 
 		cellA.wall[2] = false; // bottom wall of cell A
 		cellB.wall[0] = false; // top    wall of cell B
